@@ -7,49 +7,86 @@
 <style>
 
 body{
-background-color:#0f172a;
+background:#0f172a;
 color:white;
 font-family:Arial;
-text-align:center;
+margin:0;
 }
 
 header{
-background-color:#1e293b;
+background:#1e293b;
 padding:20px;
-font-size:30px;
+text-align:center;
+font-size:28px;
 }
 
-.menu{
-margin-top:30px;
+nav{
+background:#020617;
+padding:10px;
+display:flex;
+justify-content:center;
 }
 
-button{
-padding:15px;
-margin:10px;
-font-size:16px;
+nav button{
+margin:5px;
+padding:10px 15px;
 background:#2563eb;
 color:white;
 border:none;
-border-radius:8px;
+border-radius:6px;
 cursor:pointer;
 }
 
-button:hover{
-background:#1d4ed8;
+section{
+display:none;
+padding:20px;
 }
 
-.search{
-margin-top:30px;
+.active{
+display:block;
 }
 
 input{
-padding:10px;
-width:250px;
-border-radius:5px;
-border:none;
+padding:8px;
+margin:5px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th,td{
+border:1px solid gray;
+padding:8px;
+text-align:center;
+}
+
+button.action{
+background:#16a34a;
+}
+
+button.delete{
+background:#dc2626;
 }
 
 </style>
+
+<script>
+
+function showSection(id){
+
+document.querySelectorAll("section").forEach(s=>{
+s.classList.remove("active")
+})
+
+document.getElementById(id).classList.add("active")
+
+}
+
+</script>
+
 </head>
 
 <body>
@@ -58,24 +95,126 @@ border:none;
 🚓 MDT POLICE SYSTEM
 </header>
 
-<div class="menu">
+<nav>
 
-<button>👤 Base citoyens</button>
-<button>🚗 Véhicules</button>
-<button>🚨 BOLO</button>
-<button>📄 Rapports</button>
+<button onclick="showSection('dashboard')">Dashboard</button>
+<button onclick="showSection('citizens')">Citoyens</button>
+<button onclick="showSection('vehicles')">Véhicules</button>
+<button onclick="showSection('bolo')">BOLO</button>
+<button onclick="showSection('reports')">Rapports</button>
 
-</div>
+</nav>
 
-<div class="search">
+<section id="dashboard" class="active">
 
-<h2>Recherche citoyen</h2>
+<h2>📊 Tableau de bord</h2>
 
-<input type="text" placeholder="Nom du citoyen">
+<p>Agents en service :</p>
 
-<button>Rechercher</button>
+<ul>
+<li>Agent Dupont</li>
+<li>Agent Martin</li>
+<li>Agent Lucas</li>
+</ul>
 
-</div>
+</section>
+
+<section id="citizens">
+
+<h2>👤 Base citoyens</h2>
+
+<input placeholder="Nom citoyen">
+<button class="action">Ajouter</button>
+
+<table>
+
+<tr>
+<th>Nom</th>
+<th>Casier</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td>Jean Dupont</td>
+<td>Aucun</td>
+<td><button class="delete">Supprimer</button></td>
+</tr>
+
+</table>
+
+</section>
+
+<section id="vehicles">
+
+<h2>🚗 Base véhicules</h2>
+
+<input placeholder="Plaque">
+<button class="action">Ajouter</button>
+
+<table>
+
+<tr>
+<th>Plaque</th>
+<th>Propriétaire</th>
+</tr>
+
+<tr>
+<td>AB123CD</td>
+<td>Jean Dupont</td>
+</tr>
+
+</table>
+
+</section>
+
+<section id="bolo">
+
+<h2>🚨 Personnes recherchées</h2>
+
+<input placeholder="Nom suspect">
+<button class="action">Ajouter BOLO</button>
+
+<table>
+
+<tr>
+<th>Nom</th>
+<th>Raison</th>
+</tr>
+
+<tr>
+<td>Lucas Martin</td>
+<td>Vol de véhicule</td>
+</tr>
+
+</table>
+
+</section>
+
+<section id="reports">
+
+<h2>📄 Rapports de police</h2>
+
+<input placeholder="Nom suspect">
+<input placeholder="Crime">
+
+<button class="action">Créer rapport</button>
+
+<table>
+
+<tr>
+<th>Suspect</th>
+<th>Crime</th>
+</tr>
+
+<tr>
+<td>Jean Dupont</td>
+<td>Excès de vitesse</td>
+</tr>
+
+</table>
+
+</section>
 
 </body>
+
 </html>
